@@ -10,12 +10,15 @@ const model = (body, id = nextId++) => {
         body.data_aluguel != "" && body.data_aluguel != undefined &&
         body.data_devolucao != "" && body.data_devolucao != undefined
     ){
+        const dataAluguelISO = new Date(body.data_aluguel).toISOString().split`T`[0];
+        const dataDevolucaoISO = new Date(body.data_devolucao).toISOString().split`T`[0];
+
         return {
             id,
             livro_id: Number(body.livro_id),
             estudante_id: Number(body.estudante_id),
-            data_aluguel: body.data_aluguel,
-            data_devolucao: body.data_devolucao
+            data_aluguel: dataAluguelISO,
+            data_devolucao: dataDevolucaoISO
         } 
     }
     nextId--
